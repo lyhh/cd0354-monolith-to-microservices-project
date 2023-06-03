@@ -1,0 +1,29 @@
+# .circleci/config.yml file
+version: 2.1
+
+jobs:
+  build:            # job name
+    docker:         # executor type
+      - image: cimg/base:current # Docker image that installs Docker and has Git,
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+      - run:
+          name: Install dependencies
+          command: echo "No need to install anything. \n Just build and push the Docker image."
+      - run:
+          name: Build and push Docker image
+          command: |
+            echo "Inside the Build and push Docker image step"
+            docker --version # print the version for logging
+            docker-compose -f docker-compose-build.yaml build --parallel       
+            docker tag udagram-api-feed lyhho/udagram-api-feed:v1
+            docker tag udagram-api-user lyhho/udagram-api-user:v1
+            docker tag udagram-frontend lyhho/udagram-api-user:v1
+            docker tag reverseproxy lyhho/reverseproxy:v1
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker push lyhho/udagram-api-feed:v1
+            docker push lyhho/udagram-api-user:v1
+            docker push lyhho/udagram-frontend:v1
+            docker push lyhho/reverseproxy:v1
