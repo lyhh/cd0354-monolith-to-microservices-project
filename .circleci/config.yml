@@ -18,12 +18,12 @@ jobs:
             echo "Inside the Build and push Docker image step"
             docker --version # print the version for logging
             docker-compose -f docker-compose-build.yaml build --parallel       
-            docker tag udagram-api-feed lyhho/udagram-api-feed:v5b
-            docker tag udagram-api-user lyhho/udagram-api-user:v5b
-            docker tag udagram-frontend lyhho/udagram-frontend:v5b
-            docker tag reverseproxy lyhho/reverseproxy:v5b
+            docker tag udagram-api-feed lyhho/udagram-api-feed:v5c
+            docker tag udagram-api-user lyhho/udagram-api-user:v5c
+            docker tag udagram-frontend lyhho/udagram-frontend:v5c
+            docker tag reverseproxy lyhho/reverseproxy:v5c
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            docker push lyhho/udagram-api-feed:v5b
-            docker push lyhho/udagram-api-user:v5b
-            docker push lyhho/udagram-frontend:v5b
-            docker push lyhho/reverseproxy:v5b
+            docker push lyhho/udagram-api-feed:v5c
+            docker push lyhho/udagram-api-user:v5c
+            docker push lyhho/udagram-frontend:v5c
+            docker push lyhho/reverseproxy:v5c 
