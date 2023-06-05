@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { Console } from 'console';
 
 const API_HOST = environment.apiHost;
 
@@ -46,6 +47,7 @@ export class ApiService {
 
   post(endpoint, data): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
+    console.log( `post: url=${url}` );
     return this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
             .toPromise()
             .catch((e) => {

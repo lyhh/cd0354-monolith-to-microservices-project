@@ -33,6 +33,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       document.title = environment.appName;
+      console.log( `initializeApp: apiHost=${environment.apiHost}` );
     });
   }
 }

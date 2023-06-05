@@ -8,5 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log( `main: apiHost=${environment.apiHost}` );
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
